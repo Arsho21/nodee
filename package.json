@@ -3,12 +3,25 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon ./f1.js"
+    "start": "nodemon f1.js"
   },
   "author": "",
   "license": "ISC",
-  "description": "",
-  "devDependencies": {
+  "dependencies": {
+    "cors": "^2.8.5",
+    "hbs": "^4.2.0",
     "nodemon": "^2.0.21"
-  }
+  },
+  "devDependencies": {
+    "express": "^4.18.2"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Arsho21/nodee.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Arsho21/nodee/issues"
+  },
+  "homepage": "https://github.com/Arsho21/nodee#readme",
+  "description": ""
 }
