@@ -1,9 +1,12 @@
-// const express = require('express');
-// const app = express();
-// const hbs = require('hbs')
+const express = require('express');
+const app = express();
+const hbs = require('hbs')
+const{allFilms, film} = require('./controllers/film.js')
 
-// app.set('view engline', 'hbs');
-// hbs.registerPartials(__dirname +'/views/partials')
+// console.log(filmControllers);
+ 
+app.set('view engline', 'hbs');
+hbs.registerPartials(__dirname + '/views/partials')
 
 // app.get('/home', function (_, response) {
 //     response.render('home.hbs', {
@@ -14,10 +17,21 @@
 //     });
 // });
 
-// app.get('/', function(_, response) {
-//     response.render('main.hbs');
-// });
 
+
+app.get('/films',allFilms);
+
+app.get('/films/:id',film);
+
+app.get('/', function (_, response) {
+    response.render('main.hbs');
+});
+
+
+app.listen(4000, (err) => {
+    if (err) console.log(err);
+    console.log(('work'));
+});
 
 // --------------params
 
@@ -34,7 +48,3 @@
 //     response.send('id:' + request.params['id'])
 // });
 
-// app.listen(4000, (err) => {
-//     if (err) console.log(err);
-//     console.log(('work'));
-// })

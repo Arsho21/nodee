@@ -11,14 +11,16 @@
     {{> header}}
 
     <h1>{{title}}</h1>
-    {{#if emailsVisible}}
-    <h3>elektronnaya pochta</h3>
+   
+    {{!-- <h3>elektronnaya pochta</h3> --}}
     <ul>
-        {{#each emails}}
-            <li>{{this}}</li>
+        {{#each films}}
+            <li>{{this.name}}
+                <img style="width: 200px; heigth: 200px;" src="{{this.url}}" alt="">
+            </li>
+            <a href="films/{{this.name}}">See more</a>
         {{/each}}
     </ul>
-    {{/if}}
-    <p>telefon: {{phone}}</p>
+    {{!-- <p>telefon: {{phone}}</p> --}}
 </body>
 </html>
