@@ -1,37 +1,37 @@
-const express = require('express');
-const app = express();
-const hbs = require('hbs')
-const{allFilms, film} = require('./controllers/film.js')
+// const express = require('express');
+// const app = express();
+// const hbs = require('hbs')
+// const{allFilms, film} = require('./controllers/film.js')
 
-// console.log(filmControllers);
+// // console.log(filmControllers);
  
-app.set('view engline', 'hbs');
-hbs.registerPartials(__dirname + '/views/partials')
+// app.set('view engline', 'hbs');
+// hbs.registerPartials(__dirname + '/views/partials')
 
-// app.get('/home', function (_, response) {
-//     response.render('home.hbs', {
-//         title: 'moi kontakt',
-//         emailsVisible: true,
-//         emails: ['sfvccs@mail.ru', 'reeqwf@,ail.ru'],
-//         phone: '+374-77-77-77-71'
-//     });
+// // app.get('/home', function (_, response) {
+// //     response.render('home.hbs', {
+// //         title: 'moi kontakt',
+// //         emailsVisible: true,
+// //         emails: ['sfvccs@mail.ru', 'reeqwf@,ail.ru'],
+// //         phone: '+374-77-77-77-71'
+// //     });
+// // });
+
+
+
+// app.get('/films',allFilms);
+
+// app.get('/films/:id',film);
+
+// app.get('/', function (_, response) {
+//     response.render('main.hbs');
 // });
 
 
-
-app.get('/films',allFilms);
-
-app.get('/films/:id',film);
-
-app.get('/', function (_, response) {
-    response.render('main.hbs');
-});
-
-
-app.listen(4000, (err) => {
-    if (err) console.log(err);
-    console.log(('work'));
-});
+// app.listen(4000, (err) => {
+//     if (err) console.log(err);
+//     console.log(('work'));
+// });
 
 // --------------params
 
@@ -48,3 +48,27 @@ app.listen(4000, (err) => {
 //     response.send('id:' + request.params['id'])
 // });
 
+
+
+// -------------
+
+const express = require('express');
+const productRouter = require('./roudes/films');
+const app = express();
+
+console.log(productRouter);
+
+app.get('/', function(request, response) {
+    response.send('GLAVNAYA STRANICA')
+});
+
+app.use('/films', productRouter)
+
+app.use((req,res) => {
+    res.status(404).send('no page found 404')
+})
+
+app.listen(4000, (err) => {
+    if (err) console.log(err);
+    console.log(('work'));
+});
