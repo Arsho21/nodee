@@ -6,6 +6,7 @@ const userSchema = new mongoose.Schema({
         required: true,
     },
     age: Number,
+    father: String,
     mother: String,
     married: {
         type: Boolean,

@@ -1,19 +1,53 @@
 require('dotenv').config();
 const express = require('express');
 const mongoose = require('mongoose');
-const user = require('./models/user.js')
+const User = require('./models/user.js');
+const hbs = require('hbs');
 const app = express();
+app.use(express.json());
 
-const user1 = new user({
-    userName: 'Arshak',
-    age: '21',
-    mother: 'Anjela',
-    married: false,
-    email: 'asdfgg@mail.ru',
-    password: '1122'
+app.use(express.urlencoded({ extended: false }));
+
+app.get('/', (req, res) => {
+    res.render('inputs.hbs')
 });
-console.log(user1);
-user1.save()
+
+app.get('/users', async (req, res) => {
+    try {
+        // const users = await User.find({userName: 'Arsen'});
+        // const users = await User.findById('644bb0784d8525598faa4e1c');
+        const users = await User.findOne({userName: 'Arsen'});
+        console.log(users);
+        res.json(users)
+    } catch (e) {
+        res.status(404).json({ message: e.message });
+    }
+});
+
+app.post('/new', async (req, res) => {
+    try {
+        if (req.body.married == 'on') {
+            req.body.married = true
+        } else {
+            req.body.married = false
+        }
+        const user1 = new User(req.body)
+        let user = await user1.save()
+        console.log(user);
+        res.redirect('/success')
+    }catch(e){
+        res.json({message: e.message})
+    }
+    
+});
+
+
+app.get('/success', (req, res) => {
+    res.send('hello from Main page');
+});
+
+
+
 
 mongoose.connect(process.env.DB_URL, {
     useUnifiedTopology: true,
@@ -21,13 +55,9 @@ mongoose.connect(process.env.DB_URL, {
 });
 
 
-mongoose.connection.once('open', ()=> {
+mongoose.connection.once('open', () => {
     console.log('Connected to MongoDb');
-    app.listen(process.env.PORT, ()=> {
+    app.listen(process.env.PORT, () => {
         console.log('Server is listening port 4000');
     });
-});
-
-app.get('/', (req, res) => {
-    res.send('hello from Main page');
 });
