@@ -10,8 +10,7 @@ const kinoSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
-
-    yeat: Number,
+    year: Number,
     producer: {
         type: String,
         required: true,
