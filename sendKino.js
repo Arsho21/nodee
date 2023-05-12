@@ -22,32 +22,31 @@ app.get('/', async (req,res) => {
 });
 
 
-app.get('/movies', async(req, res) => {
-    try{
-        // let x = await Kino.find({ year: {$gt: 9}});
+// app.get('/movies', async(req, res) => {
+//     try{
+//         let x = await Kino.find({ year: {$gt: 9}});
 
-        //let x = await Kino.find({year: {$gte: 9}});
+//         let x = await Kino.find({year: {$gte: 9}});
 
-        // let x = await Kino.find({year: {$lte: 2018}, kinoName: 'Hulk'});
+//         let x = await Kino.find({year: {$lte: 2018}, kinoName: 'Hulk'});
 
-        //  let x = await Kino.find({kinoName: {$in: ['Hulk', 'Iron Man']}});
+//          let x = await Kino.find({kinoName: {$in: ['Hulk', 'Iron Man']}});
 
-        // let x = await Kino.find({$or: [{producer: 'flamingo'}, {producer: 'Кевин Файги'}]});
+//         let x = await Kino.find({$or: [{producer: 'flamingo'}, {producer: 'Кевин Файги'}]});
 
-        // let x = await Kino.find({$or: [{producer: 'Йен Брюс'}, {year: 2015}]});
+//         let x = await Kino.find({$or: [{producer: 'Йен Брюс'}, {year: 2015}]});
 
-        // let x = await Kino.find({$and: [{producer: 'Йен Брюс'}, {year: 2}]});
+//         let x = await Kino.find({$and: [{producer: 'Йен Брюс'}, {year: 2}]});
 
-        let x = await Kino.find({producer: 'Йен Брюс', year: 2});
+//         let x = await Kino.find({producer: 'Йен Брюс', year: 2});
 
-
-        //let x = await Kino.find({year: {$lt: 8}});
-        res.status(200).json(x);
-    }catch(e){
-        res.json({message: e.message});
-    }
+//         let x = await Kino.find({year: {$lt: 8}});
+//         res.status(200).json(x);
+//     }catch(e){
+//         res.json({message: e.message});
+//     }
     
-})
+// })
 
 app.get('/delete', async (req,res) => {
     try{
@@ -57,10 +56,8 @@ app.get('/delete', async (req,res) => {
 
         // const result = await Kino.findOneAndDelete({kinoName: 'Black Panther'}); //veradardznum e jnjvac arjeqy ir masin bolor texekutyunov
 
-        const result = await Kino.findByIdAndDelete('64523c269fc177934514ed76') //jnjum e id ov
-
-        console.log(result);
-        res.json(result);
+        const result = await Kino.findByIdAndDelete(req.params.id);
+        res.status(200).json(result)
     }catch (e){
         res.status(400).json({message: e.message});
     }

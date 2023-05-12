@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon sendKino.js"
+    "start": "nodemon main.js"
   },
   "author": "",
   "license": "ISC",
